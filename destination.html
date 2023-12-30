@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ destination['name'] }} - Travel Planner</title>
+   
+</head>
+<head>
+    <!-- ... (existing head content) ... -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylee.css') }}">
+</head>
+
+<body>
+    <h1>{{ destination['name'] }}</h1>
+    <p>{{ destination['description'] }}</p>
+    <h2>Activities:</h2>
+    <ul>
+        {% for activity in destination['activities'] %}
+            <li>{{ activity }}</li>
+        {% endfor %}
+    </ul>
+    <form method="post" action="{{ url_for('plan') }}">
+        <input type="hidden" name="destination_id" value="{{ destination['id'] }}">
+        <button type="submit">Plan Your Trip</button>
+    </form>
+</body>
+</html>
